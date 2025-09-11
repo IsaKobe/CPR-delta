@@ -1,0 +1,1 @@
+# Richard Kopp, 3.B

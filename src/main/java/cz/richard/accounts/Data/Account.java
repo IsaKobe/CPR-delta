@@ -1,4 +1,4 @@
-package cz.richard.accounts;
+package cz.richard.accounts.Data;
 
 import cz.richard.clients.Client;
 
@@ -34,14 +34,7 @@ public class Account {
         return balance;
     }
 
-    public void deposit(double amount) {
-        balance += amount;
-    }
-
-    public void withdraw(double amount) {
-        if (balance - amount < 0)
-            throw new RuntimeException("Insufficient Balance");
-        else
-            balance -= amount;
+    public void setBalance(double newBalance) {
+        balance = newBalance;
     }
 }

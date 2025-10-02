@@ -1,4 +1,4 @@
-package cz.richard.accounts;
+package cz.richard.accounts.Data;
 
 import cz.richard.clients.Client;
 

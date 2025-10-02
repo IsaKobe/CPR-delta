@@ -16,7 +16,7 @@ public class AccountGen {
         StringBuilder id = new StringBuilder();
         Random rand = new Random();
         for(int i = 0; i < 25; i++){
-            id.append((char) rand.nextInt(10,100));
+            id.append((char) rand.nextInt(65,91));
         }
         return id.toString();
     }

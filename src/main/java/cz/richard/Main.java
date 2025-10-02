@@ -23,7 +23,7 @@ public class Main {
 
         System.out.println(account.getBalance());
         System.out.println(account.getBankAccountNum());
-        AccountHelperMovement.deposit(account, 100);
+        AccountHelperMovement.deposit(account, 100000);
 
         System.out.println(account.getBalance());
         AccountHelperMovement.withdraw(account, 75);

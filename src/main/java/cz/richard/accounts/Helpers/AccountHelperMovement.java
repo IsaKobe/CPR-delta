@@ -1,6 +1,7 @@
 package cz.richard.accounts.Helpers;
 
 import cz.richard.accounts.Data.Account;
+import cz.richard.cards.Card;
 
 public class AccountHelperMovement {
     public static void withdraw(Account account, double amount) {

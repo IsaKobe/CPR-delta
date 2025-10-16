@@ -36,16 +36,17 @@ public class Main {
     static void AccountTest(){
 
         Client client = new Client("", "John", "Doe" );
-        AccountsFactory accountsFactory = new AccountsFactory();
+        AccountsFactory accountsFactory = AccountsFactory.getInstance();
+        AccountHelperMovement movement = AccountHelperMovement.getInstance();
 
         Account account = accountsFactory.createAccount(client, 100);
 
         System.out.println(account.getBalance());
         System.out.println(account.getBankAccountNum());
-        AccountHelperMovement.deposit(account, 100000);
+        movement.deposit(account, 100000);
 
         System.out.println(account.getBalance());
-        AccountHelperMovement.withdraw(account, 75);
+        movement.withdraw(account, 75);
 
         System.out.println(account.getBalance());
 
@@ -56,7 +57,7 @@ public class Main {
 
     static void SerializeTest(){
         Client client = new Client("", "John", "Doe" );
-        AccountsFactory accountsFactory = new AccountsFactory();
+        AccountsFactory accountsFactory = AccountsFactory.getInstance();
 
         Account account = accountsFactory.createAccount(client, 100);
 

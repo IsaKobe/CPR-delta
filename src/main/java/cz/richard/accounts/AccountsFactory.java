@@ -7,11 +7,16 @@ import cz.richard.accounts.Data.StudentAccount;
 import cz.richard.clients.Client;
 
 public class AccountsFactory {
-
     AccountGen gen;
+    static AccountsFactory instance = null;
 
-    public AccountsFactory() {
-        gen = new AccountGen();
+    private  AccountsFactory() {
+        gen = AccountGen.getInstance();
+    }
+    public static AccountsFactory getInstance() {
+        if(instance == null)
+            instance = new AccountsFactory();
+        return instance;
     }
 
     public Account createAccount(Client client, double balance) {

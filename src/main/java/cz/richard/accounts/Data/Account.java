@@ -3,12 +3,15 @@ package cz.richard.accounts.Data;
 import cz.richard.cards.Card;
 import cz.richard.clients.Client;
 
-
+/// Basic account class
 public class Account {
+    /// ID of the account (UID, is not actually unique)
     String id;
+    /// Bank Account number
     String bankAccountNum;
-
+    /// owner of the account
     Client linkedClient;
+    /// current balance
     double balance;
 
     public Account(String id, String bankAccountNum, Client linkedClient, double balance) {

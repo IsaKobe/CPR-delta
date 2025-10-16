@@ -11,11 +11,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class AccountManager {
-    static AccountsFactory accountFactory = new AccountsFactory();
-
+    AccountsFactory accountFactory;
     List<Account> accounts;
+    AccountHelperMovement movement;
+
     public AccountManager() {
         accounts = new ArrayList<>();
+        accountFactory = AccountsFactory.getInstance();
+        movement = AccountHelperMovement.getInstance();
     }
 
     public List<Account> getAccounts() {
@@ -40,14 +43,14 @@ public class AccountManager {
     public void depositWithCard(Card card, double amount) {
         Account account = getAccountByCard(card);
         if(account != null)
-            AccountHelperMovement.deposit(account, amount);
+            movement.deposit(account, amount);
         else
             System.out.println("Account not found");
     }
     public void withdrawWithCard(Card card, double amount) {
         Account account = getAccountByCard(card);
         if(account != null)
-            AccountHelperMovement.withdraw(account, amount);
+            movement.withdraw(account, amount);
         else
             System.out.println("Account not found");
     }

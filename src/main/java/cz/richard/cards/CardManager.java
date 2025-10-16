@@ -7,27 +7,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/// One list of cards, can have multiple instances
 public class CardManager {
-    static CardFactory cardFactory = new CardFactory();
+    static CardFactory cardFactory;
 
     List<Card> cards;
     public CardManager() {
         cards = new ArrayList<>();
+        cardFactory = CardFactory.getInstance();
     }
 
     public List<Card> getCards() {
         return cards;
     }
 
+
     public Card addCard(CardAccount account) {
         Card card = cardFactory.createCard(account);
         cards.add(card);
         return card;
-    }
-
-    public List<Card> getCards(Account account) {
-        return  cards;
-        //return cards.stream().filter(card -> card.account == account).collect(Collectors.toList())
     }
 
     public void removeCard(Card card) {
@@ -37,8 +35,4 @@ public class CardManager {
     public Card getCard(long cardNumber) {
         return cards.stream().filter(card -> card.number == cardNumber).findFirst().orElse(null);
     }
-
-//    public Card getCard(Account account) {
-//        return cards.stream().filter(card -> card.account == account).findFirst().orElse(null);
-//    }
 }

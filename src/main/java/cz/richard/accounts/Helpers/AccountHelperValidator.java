@@ -1,11 +1,18 @@
 package cz.richard.accounts.Helpers;
 
-import cz.richard.accounts.Data.Account;
-
-import java.util.logging.Logger;
-
 public class AccountHelperValidator {
-    public static boolean validateDeposit(double balance, double amount) {
+    static AccountHelperValidator instance;
+
+    private AccountHelperValidator(){}
+
+    public static AccountHelperValidator getInstance() {
+        if (instance == null) {
+            instance = new AccountHelperValidator();
+        }
+        return instance;
+    }
+
+    public boolean validateDeposit(double balance, double amount) {
         if(amount <= 0)
             return false;
         if(amount > 10000)
@@ -17,7 +24,7 @@ public class AccountHelperValidator {
         return true;
     }
 
-    public static boolean validateWithdraw(double balance, double amount) {
+    public boolean validateWithdraw(double balance, double amount) {
         if(amount <= 0)
             return false;
         if(balance < amount)

@@ -1,6 +1,7 @@
 package cz.richard.clients;
 
 public class Client {
+    // ID of the user
     String id;
 
     String firstName;

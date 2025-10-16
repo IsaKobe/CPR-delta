@@ -4,6 +4,16 @@ import java.util.Random;
 
 public class AccountGen {
 
+    static AccountGen instance = null;
+    public static AccountGen getInstance()
+    {
+        if(instance == null)
+            instance = new AccountGen();
+        return instance;
+    }
+
+    private AccountGen(){}
+
     public String generateAccountNum(){
         StringBuilder accountNum = new StringBuilder();
         Random rand = new Random();

@@ -5,7 +5,18 @@ import cz.richard.accounts.Data.Account;
 import java.util.Random;
 
 public class CardGen {
-    Random rand = new Random();
+    Random rand;
+
+    static CardGen instance = null;
+    CardGen(){
+        rand =  new Random();
+    }
+    public CardGen getInstance() {
+        if(instance == null)
+            instance = new CardGen();
+        return instance;
+    }
+
     public int CreateCVC(){
         return rand.nextInt(1000);
     }

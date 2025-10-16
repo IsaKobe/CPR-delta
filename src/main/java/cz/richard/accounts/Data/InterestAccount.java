@@ -2,7 +2,9 @@ package cz.richard.accounts.Data;
 
 import cz.richard.clients.Client;
 
+/// Adds {@code interest}, which can be used to add interest to the account
 public class InterestAccount extends Account {
+    ///
     double interest;
 
     public InterestAccount(String id, String bankAccountNum, Client linkedClient, double balance, double interest) {

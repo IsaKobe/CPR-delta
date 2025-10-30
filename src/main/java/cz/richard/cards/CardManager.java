@@ -1,14 +1,14 @@
 package cz.richard.cards;
 
+import com.google.inject.Inject;
 import cz.richard.accounts.Data.Account;
 import cz.richard.accounts.Data.CardAccount;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 public class CardManager {
-    static CardFactory cardFactory = new CardFactory();
+    @Inject
+    CardFactory cardFactory;
 
     List<Card> cards;
     public CardManager() {

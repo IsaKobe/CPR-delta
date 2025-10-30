@@ -1,5 +1,6 @@
 package cz.richard.accounts;
 
+import com.google.inject.Inject;
 import cz.richard.accounts.Data.Account;
 import cz.richard.accounts.Data.CardAccount;
 import cz.richard.accounts.Data.InterestAccount;
@@ -7,11 +8,11 @@ import cz.richard.accounts.Data.StudentAccount;
 import cz.richard.clients.Client;
 
 public class AccountsFactory {
-
+    @Inject
     AccountGen gen;
 
     public AccountsFactory() {
-        gen = new AccountGen();
+
     }
 
     public Account createAccount(Client client, double balance) {

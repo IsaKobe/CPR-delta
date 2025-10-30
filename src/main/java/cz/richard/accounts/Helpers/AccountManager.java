@@ -1,5 +1,6 @@
 package cz.richard.accounts.Helpers;
 
+import com.google.inject.Inject;
 import cz.richard.accounts.AccountsFactory;
 import cz.richard.accounts.Data.Account;
 import cz.richard.accounts.Data.CardAccount;
@@ -8,10 +9,10 @@ import cz.richard.clients.Client;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class AccountManager {
-    static AccountsFactory accountFactory = new AccountsFactory();
+    @Inject
+    AccountsFactory accountFactory;
 
     List<Account> accounts;
     public AccountManager() {

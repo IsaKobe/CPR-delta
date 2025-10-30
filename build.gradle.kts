@@ -15,6 +15,7 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("com.google.code.gson:gson:2.13.2")
     implementation("com.thoughtworks.xstream:xstream:1.4.21")
+    implementation("com.google.inject:guice:7.0.0")
 }
 
 tasks.test {

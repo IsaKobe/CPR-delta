@@ -1,14 +1,14 @@
 package cz.richard.cards;
 
-import cz.richard.accounts.Data.Account;
+import com.google.inject.Inject;
 import cz.richard.accounts.Data.CardAccount;
 
 import java.time.LocalDate;
 
 public class CardFactory {
-    CardGen cardGen = new CardGen();
+    @Inject
+    CardGen cardGen;
     final int CARD_VALID_LENGTH_YEAR = 4;
-
 
     public Card createCard(CardAccount account) {
         Card card = new Card();

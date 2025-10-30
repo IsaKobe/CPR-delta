@@ -6,7 +6,7 @@ import cz.richard.accounts.AccountsFactory;
 import cz.richard.accounts.Data.Account;
 import cz.richard.accounts.Data.CardAccount;
 import cz.richard.accounts.Data.StudentAccount;
-import cz.richard.accounts.Helpers.AccountHelperMovement;
+import cz.richard.accounts.Helpers.AccountMovementService;
 import cz.richard.accounts.Helpers.AccountManager;
 import cz.richard.accounts.serialization.AccountData;
 import cz.richard.accounts.serialization.Serializer;
@@ -15,6 +15,7 @@ import cz.richard.cards.CardFactory;
 import cz.richard.cards.CardGen;
 import cz.richard.cards.CardManager;
 import cz.richard.clients.Client;
+import cz.richard.clients.ClientFactory;
 
 public class App {
 
@@ -39,6 +40,8 @@ public class App {
     @Inject
     private AccountManager accountManager;
 
+    @Inject
+    private ClientFactory clientFactory;
 
 
     public void Run() {
@@ -55,16 +58,16 @@ public class App {
 
     void AccountTest() {
 
-        Client client = new Client("", "John", "Doe");
+        Client client = clientFactory.CreateCustomer("John", "Doe");
 
         Account account = accountsFactory.createAccount(client, 100);
 
         System.out.println(account.getBalance());
         System.out.println(account.getBankAccountNum());
-        AccountHelperMovement.deposit(account, 100000);
+        AccountMovementService.deposit(account, 100000);
 
         System.out.println(account.getBalance());
-        AccountHelperMovement.withdraw(account, 75);
+        AccountMovementService.withdraw(account, 75);
 
         System.out.println(account.getBalance());
 
@@ -74,7 +77,7 @@ public class App {
     }
 
     void SerializeTest() {
-        Client client = new Client("", "John", "Doe");
+        Client client = clientFactory.CreateCustomer("John", "Doe");
 
         Account account = accountsFactory.createAccount(client, 100);
 
@@ -93,7 +96,7 @@ public class App {
     }
 
     void CardTest() {
-        Client client = new Client("", "John", "Doe");
+        Client client = clientFactory.CreateCustomer( "John", "Doe");
         CardAccount account = accountManager.addCardAccount(client, 100);
         Account acc = accountManager.addAccount(client, 100);
 

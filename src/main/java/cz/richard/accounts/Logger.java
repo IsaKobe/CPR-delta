@@ -21,6 +21,6 @@ public class Logger {
     }
 
     void log(String message) {
-        System.out.printf("\n%s: %s", java.time.LocalDate.now(), message);
+        System.out.printf("%s: %s\n", java.time.LocalDate.now(), message);
     }
 }

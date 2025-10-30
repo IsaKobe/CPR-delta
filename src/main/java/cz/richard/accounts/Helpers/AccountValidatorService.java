@@ -1,10 +1,6 @@
 package cz.richard.accounts.Helpers;
 
-import cz.richard.accounts.Data.Account;
-
-import java.util.logging.Logger;
-
-public class AccountHelperValidator {
+public class AccountValidatorService {
     public static boolean validateDeposit(double balance, double amount) {
         if(amount <= 0)
             return false;

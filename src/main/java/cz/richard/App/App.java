@@ -8,6 +8,8 @@ import cz.richard.accounts.Data.CardAccount;
 import cz.richard.accounts.Data.StudentAccount;
 import cz.richard.accounts.Helpers.AccountMovementService;
 import cz.richard.accounts.Helpers.AccountManager;
+import cz.richard.accounts.Helpers.InterestCron;
+import cz.richard.accounts.Helpers.InterestFacade;
 import cz.richard.accounts.serialization.AccountData;
 import cz.richard.accounts.serialization.Serializer;
 import cz.richard.cards.Card;
@@ -74,6 +76,13 @@ public class App {
         Account studentAccount = accountsFactory.createStudentAccount(client, 50, "Delta");
         System.out.println(studentAccount instanceof StudentAccount ? "Student Account" : "Other Account");
 
+        Account interestAccount = accountsFactory.createInterestAccount(client, 1000, 0.1f);
+        AccountManager manager = new AccountManager();
+        manager.addNewAccount(interestAccount);
+        manager.addNewAccount(account);
+        manager.addNewAccount(studentAccount);
+
+        InterestCron cron = new InterestCron(new InterestFacade(manager));
     }
 
     void SerializeTest() {
@@ -98,7 +107,7 @@ public class App {
     void CardTest() {
         Client client = clientFactory.CreateCustomer( "John", "Doe");
         CardAccount account = accountManager.addCardAccount(client, 100);
-        Account acc = accountManager.addAccount(client, 100);
+        Account acc = accountManager.addNewAccount(client, 100);
 
         Card card = cardManager.addCard(account);
 

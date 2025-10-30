@@ -23,7 +23,10 @@ public class AccountManager {
         return accounts;
     }
 
-    public Account addAccount(Client client, int balance) {
+    public void addNewAccount(Account account) {
+        accounts.add(account);
+    }
+    public Account addNewAccount(Client client, int balance) {
         Account account = accountFactory.createAccount(client, balance);
         accounts.add(account);
         return account;
@@ -41,14 +44,14 @@ public class AccountManager {
     public void depositWithCard(Card card, double amount) {
         Account account = getAccountByCard(card);
         if(account != null)
-            AccountHelperMovement.deposit(account, amount);
+            AccountMovementService.deposit(account, amount);
         else
             System.out.println("Account not found");
     }
     public void withdrawWithCard(Card card, double amount) {
         Account account = getAccountByCard(card);
         if(account != null)
-            AccountHelperMovement.withdraw(account, amount);
+            AccountMovementService.withdraw(account, amount);
         else
             System.out.println("Account not found");
     }

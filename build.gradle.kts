@@ -17,6 +17,7 @@ dependencies {
     implementation("com.thoughtworks.xstream:xstream:1.4.21")
     implementation("com.google.inject:guice:7.0.0")
     implementation("com.cronutils:cron-utils:9.2.1")
+    implementation("org.quartz-scheduler:quartz:2.5.1")
 }
 
 tasks.test {

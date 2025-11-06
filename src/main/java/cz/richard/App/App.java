@@ -8,6 +8,7 @@ import cz.richard.accounts.Data.CardAccount;
 import cz.richard.accounts.Data.StudentAccount;
 import cz.richard.accounts.Helpers.AccountMovementService;
 import cz.richard.accounts.Helpers.AccountManager;
+import cz.richard.accounts.Helpers.Cron.InterestCronPackage;
 import cz.richard.accounts.Helpers.InterestCron;
 import cz.richard.accounts.Helpers.InterestFacade;
 import cz.richard.accounts.serialization.AccountData;
@@ -82,7 +83,8 @@ public class App {
         manager.addNewAccount(account);
         manager.addNewAccount(studentAccount);
 
-        InterestCron cron = new InterestCron(new InterestFacade(manager));
+        InterestCronPackage.StartService(manager);
+        //InterestCron cron = new InterestCron(new InterestFacade(manager));
     }
 
     void SerializeTest() {

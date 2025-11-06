@@ -11,10 +11,10 @@ public class AccountInterestService {
         double d = interestAccount.getBalance();
         double interest = interestAccount.getInterest();
 
-        LocalDateTime dateTime = LocalDateTime.now();
+        /*LocalDateTime dateTime = LocalDateTime.now();
         Duration a = Duration.between(interestAccount.getLastInterestDate(), dateTime);
         Duration b = Duration.between(interestAccount.getLastInterestDate(), interestAccount.getLastInterestDate().plus(period));
-        interestAccount.markInterest();
-        return d * (interest * (a.toSeconds() / (float)b.toSeconds()));
+        interestAccount.markInterest();*/
+        return d * (interest);// * (a.toSeconds() / (float)b.toSeconds()));
     }
 }

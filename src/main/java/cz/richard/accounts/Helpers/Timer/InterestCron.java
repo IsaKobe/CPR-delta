@@ -1,7 +1,4 @@
-package cz.richard.accounts.Helpers;
-
-import com.google.inject.Inject;
-import cz.richard.accounts.AccountsFactory;
+package cz.richard.accounts.Helpers.Timer;
 
 import java.util.TimerTask;
 

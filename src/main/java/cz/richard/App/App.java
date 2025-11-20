@@ -3,15 +3,12 @@ package cz.richard.App;
 import com.google.inject.Inject;
 import cz.richard.accounts.AccountGen;
 import cz.richard.accounts.AccountsFactory;
-import cz.richard.accounts.Data.Account;
-import cz.richard.accounts.Data.CardAccount;
-import cz.richard.accounts.Data.StudentAccount;
+import cz.richard.accounts.Data.Accounts.Account;
+import cz.richard.accounts.Data.Accounts.CardAccount;
+import cz.richard.accounts.Data.Accounts.StudentAccount;
 import cz.richard.accounts.Helpers.AccountMovementService;
 import cz.richard.accounts.Helpers.AccountManager;
-import cz.richard.accounts.Helpers.Cron.InterestCronPackage;
-import cz.richard.accounts.Helpers.InterestCron;
-import cz.richard.accounts.Helpers.InterestFacade;
-import cz.richard.accounts.serialization.AccountData;
+import cz.richard.cron.CronServices;
 import cz.richard.accounts.serialization.Serializer;
 import cz.richard.cards.Card;
 import cz.richard.cards.CardFactory;
@@ -48,11 +45,11 @@ public class App {
 
 
     public void Run() {
-        AccountTest();
         offset();
         SerializeTest();
-        offset();
         CardTest();
+        offset();
+        AccountTest();
     }
 
     private static void offset() {
@@ -78,32 +75,29 @@ public class App {
         System.out.println(studentAccount instanceof StudentAccount ? "Student Account" : "Other Account");
 
         Account interestAccount = accountsFactory.createInterestAccount(client, 1000, 0.1f);
-        AccountManager manager = new AccountManager();
+        AccountManager manager = new AccountManager(accountsFactory);
         manager.addNewAccount(interestAccount);
         manager.addNewAccount(account);
         manager.addNewAccount(studentAccount);
 
-        InterestCronPackage.StartService(manager);
+        CronServices.StartCronService(manager);
         //InterestCron cron = new InterestCron(new InterestFacade(manager));
     }
 
     void SerializeTest() {
         Client client = clientFactory.CreateCustomer("John", "Doe");
 
-        Account account = accountsFactory.createAccount(client, 100);
+        AccountManager manager = new AccountManager(accountsFactory);
+        Account account = manager.addNewAccount(client, 100);
 
-        AccountData[] accounts = new AccountData[2];
-        accounts[0] = new AccountData(account);
-        accounts[1] = new AccountData(account);
-
-        System.out.println(serializer.serialize(accounts));
+        System.out.println(serializer.serialize(manager.getAccounts()));
 
         String ser = serializer.serialize(account);
         System.out.println(ser);
         Account account1 = (Account) serializer.deserialize(ser, Account.class);
         System.out.println(account1.getBalance());
 
-        System.out.println(serializer.serializeXML(account1));
+        //System.out.println(serializer.serializeXML(account1));
     }
 
     void CardTest() {

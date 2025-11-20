@@ -1,10 +1,7 @@
-package cz.richard.accounts.Helpers.Cron;
+package cz.richard.accounts.Helpers;
 
-import cz.richard.accounts.Data.Account;
-import cz.richard.accounts.Data.InterestAccount;
-import cz.richard.accounts.Helpers.AccountInterestService;
-import cz.richard.accounts.Helpers.AccountManager;
-import cz.richard.accounts.Helpers.AccountMovementService;
+import cz.richard.accounts.Data.Accounts.Account;
+import cz.richard.accounts.Data.Accounts.InterestAccount;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
@@ -23,7 +20,7 @@ public class InterestFacadePackage implements Job {
         List<Account> interestAccounts = manager.getAccounts().stream().filter(account -> account instanceof InterestAccount).toList();
         for(Account account: interestAccounts){
             double d = AccountInterestService.Calculate((InterestAccount) account, period);
-            AccountMovementService.deposit(account, d);
+            AccountMovementService.interest(account, d);
         }
     }
 }

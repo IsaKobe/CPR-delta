@@ -2,8 +2,8 @@ package cz.richard.accounts.Helpers;
 
 import com.google.inject.Inject;
 import cz.richard.accounts.AccountsFactory;
-import cz.richard.accounts.Data.Account;
-import cz.richard.accounts.Data.CardAccount;
+import cz.richard.accounts.Data.Accounts.Account;
+import cz.richard.accounts.Data.Accounts.CardAccount;
 import cz.richard.cards.Card;
 import cz.richard.clients.Client;
 
@@ -17,6 +17,10 @@ public class AccountManager {
     List<Account> accounts;
     public AccountManager() {
         accounts = new ArrayList<>();
+    }
+    public AccountManager(AccountsFactory accountFactory) {
+        accounts = new ArrayList<>();
+        this.accountFactory = accountFactory;
     }
 
     public List<Account> getAccounts() {
@@ -59,4 +63,6 @@ public class AccountManager {
     CardAccount getAccountByCard(Card card) {
         return (CardAccount) accounts.stream().filter(account -> account.getClass() == CardAccount.class && ((CardAccount)account).getCard() == card).findFirst().orElse(null);
     }
+
+
 }

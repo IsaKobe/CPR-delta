@@ -1,9 +1,8 @@
-package cz.richard.accounts.Data;
+package cz.richard.accounts.Data.Accounts;
 
 import cz.richard.clients.Client;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class InterestAccount extends Account {
     double interest;

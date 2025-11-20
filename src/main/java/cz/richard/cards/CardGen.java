@@ -1,7 +1,5 @@
 package cz.richard.cards;
 
-import cz.richard.accounts.Data.Account;
-
 import java.util.Random;
 
 public class CardGen {

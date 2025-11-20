@@ -1,7 +1,7 @@
 package cz.richard.cards;
 
 import com.google.inject.Inject;
-import cz.richard.accounts.Data.CardAccount;
+import cz.richard.accounts.Data.Accounts.CardAccount;
 
 import java.time.LocalDate;
 

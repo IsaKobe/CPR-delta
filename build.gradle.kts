@@ -18,6 +18,7 @@ dependencies {
     implementation("com.google.inject:guice:7.0.0")
     implementation("com.cronutils:cron-utils:9.2.1")
     implementation("org.quartz-scheduler:quartz:2.5.1")
+    implementation("org.slf4j:slf4j-nop:2.0.13")
 }
 
 tasks.test {

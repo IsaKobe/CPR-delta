@@ -1,10 +1,8 @@
 package cz.richard.accounts.Helpers;
 
-import cz.richard.accounts.Data.InterestAccount;
+import cz.richard.accounts.Data.Accounts.InterestAccount;
 
 import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.temporal.TemporalAmount;
 
 public class AccountInterestService {
     public static double Calculate(InterestAccount interestAccount, Duration period) {

@@ -1,8 +1,8 @@
 package cz.richard.cards;
 
 import com.google.inject.Inject;
-import cz.richard.accounts.Data.Account;
-import cz.richard.accounts.Data.CardAccount;
+import cz.richard.accounts.Data.Accounts.Account;
+import cz.richard.accounts.Data.Accounts.CardAccount;
 
 import java.util.ArrayList;
 import java.util.List;

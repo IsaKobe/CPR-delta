@@ -1,50 +1,30 @@
 package cz.richard.accounts.serialization;
 
-import com.google.gson.Gson;
+import com.google.gson.*;
 import com.thoughtworks.xstream.XStream;
-import cz.richard.accounts.Data.Account;
+
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Serializer {
 
-    public String serialize(Object object){
-        Gson gson = new Gson();
-        return gson.toJson(object);
-    }
+    static Gson gson = new GsonBuilder()
+            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+            .setPrettyPrinting()
+            .create();
 
-    public Object deserialize(String object, Class clazz){
-        Gson gson = new Gson();
-        return gson.fromJson(object, clazz);
-    }
-
-    public String serializeXML(Object object){
-        XStream xmlStream = new XStream();
-        return xmlStream.toXML(object);
-    }
-
-    public String serialize(ISerializable[] data)
-    {
-        StringBuilder builder = new StringBuilder();
-        createObject(builder, createList("accounts", data));
-        builder.deleteCharAt(builder.length()-2);
-        return builder.toString();
-    }
-
-    String createList(String fieldName, ISerializable[] data){
-        StringBuilder listBuilder = new StringBuilder();
-        listBuilder.append(String.format("\"%s\": [", fieldName));
-        for(ISerializable item : data){
-            createObject(listBuilder, item.serialize());
+    static public String serialize(Object object){
+        try {
+            return gson.toJson(object);
         }
-        listBuilder.deleteCharAt(listBuilder.length()-2);
-        listBuilder.append("]");
-        return listBuilder.toString();
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return "";
     }
 
-    void createObject(StringBuilder builder, String content){
-        builder.append(String.format("""
-                {
-                    %s
-                },
-                """, content));
+    static public Object deserialize(String object, Class clazz){
+        return gson.fromJson(object, clazz);
     }
 }

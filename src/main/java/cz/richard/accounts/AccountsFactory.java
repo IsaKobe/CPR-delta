@@ -1,10 +1,10 @@
 package cz.richard.accounts;
 
 import com.google.inject.Inject;
-import cz.richard.accounts.Data.Account;
-import cz.richard.accounts.Data.CardAccount;
-import cz.richard.accounts.Data.InterestAccount;
-import cz.richard.accounts.Data.StudentAccount;
+import cz.richard.accounts.Data.Accounts.Account;
+import cz.richard.accounts.Data.Accounts.CardAccount;
+import cz.richard.accounts.Data.Accounts.InterestAccount;
+import cz.richard.accounts.Data.Accounts.StudentAccount;
 import cz.richard.clients.Client;
 
 public class AccountsFactory {

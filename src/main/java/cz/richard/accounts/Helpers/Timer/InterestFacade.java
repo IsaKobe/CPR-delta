@@ -1,14 +1,15 @@
-package cz.richard.accounts.Helpers;
+package cz.richard.accounts.Helpers.Timer;
 
-import com.google.inject.Inject;
-import cz.richard.accounts.Data.Account;
-import cz.richard.accounts.Data.InterestAccount;
+import cz.richard.accounts.Data.Accounts.Account;
+import cz.richard.accounts.Data.Accounts.InterestAccount;
+import cz.richard.accounts.Helpers.AccountInterestService;
+import cz.richard.accounts.Helpers.AccountManager;
+import cz.richard.accounts.Helpers.AccountMovementService;
 
 import java.time.Duration;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class InterestFacade {
     LocalDateTime nextInterest;
@@ -26,10 +27,10 @@ public class InterestFacade {
 
 
     void processAllInterest(){
-        List<Account> interestAccounts = manager.accounts.stream().filter(account -> account instanceof InterestAccount).toList();
+        List<Account> interestAccounts = manager.getAccounts().stream().filter(account -> account instanceof InterestAccount).toList();
         for(Account account: interestAccounts){
             double d = AccountInterestService.Calculate((InterestAccount) account, period);
-            AccountMovementService.deposit(account, d);
+            AccountMovementService.interest(account, d);
         }
         nextInterest = LocalDateTime.now().plus(period);
     }
